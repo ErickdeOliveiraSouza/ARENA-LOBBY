@@ -1,60 +1,508 @@
+/* ========================================= */
+/* CONFIGURAÇÕES GLOBAIS */
+/* ========================================= */
+
 :root {
+
     --bg: #050505;
     --card: #0d0d0d;
+
     --neon: #8a2be2;
     --cyan: #00f2ff;
+
     --text: #ffffff;
     --text-dim: #b0b0b0;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+* {
 
-body { background: var(--bg); color: var(--text); line-height: 1.6; }
+    margin: 0;
+    padding: 0;
 
-/* Navegação */
+    box-sizing: border-box;
+
+    font-family: 'Inter', sans-serif;
+}
+
+html {
+
+    scroll-behavior: smooth;
+}
+
+body {
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    line-height: 1.6;
+
+    overflow-x: hidden;
+}
+
+/* ========================================= */
+/* HEADER */
+/* ========================================= */
+
 header {
-    position: fixed; top: 0; width: 100%; z-index: 1000;
-    background: rgba(5, 5, 5, 0.9); backdrop-filter: blur(10px);
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 1000;
+
+    background: rgba(5, 5, 5, 0.9);
+
+    backdrop-filter: blur(10px);
+
     border-bottom: 1px solid rgba(138, 43, 226, 0.2);
-    padding: 1rem 10%; display: flex; justify-content: space-between; align-items: center;
+
+    padding: 1rem 8%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
 }
 
-.logo { font-weight: 800; color: var(--neon); text-shadow: 0 0 10px var(--neon); letter-spacing: 2px; }
+/* LOGO */
 
-nav ul { display: flex; list-style: none; gap: 2rem; }
-nav a { text-decoration: none; color: var(--text-dim); transition: 0.3s; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
-nav a:hover { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
+.logo {
 
-/* Seção de Jogos */
-.container { padding: 8rem 10% 4rem; max-width: 1200px; margin: 0 auto; }
+    font-weight: 800;
 
-.sub-nav { display: flex; gap: 1rem; margin-bottom: 3rem; justify-content: center; }
+    color: var(--neon);
+
+    text-shadow: 0 0 10px var(--neon);
+
+    letter-spacing: 2px;
+
+    font-size: 1.3rem;
+}
+
+/* NAVEGAÇÃO */
+
+nav ul {
+
+    display: flex;
+
+    list-style: none;
+
+    gap: 2rem;
+
+    flex-wrap: wrap;
+}
+
+nav a {
+
+    text-decoration: none;
+
+    color: var(--text-dim);
+
+    transition: 0.3s;
+
+    font-size: 0.85rem;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+}
+
+nav a:hover {
+
+    color: var(--cyan);
+
+    text-shadow: 0 0 8px var(--cyan);
+}
+
+/* ========================================= */
+/* CONTAINER PRINCIPAL */
+/* ========================================= */
+
+.container {
+
+    padding: 8rem 8% 4rem;
+
+    max-width: 1300px;
+
+    margin: 0 auto;
+
+    width: 100%;
+}
+
+/* ========================================= */
+/* SUB NAV */
+/* ========================================= */
+
+.sub-nav {
+
+    display: flex;
+
+    gap: 1rem;
+
+    margin-bottom: 3rem;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+}
+
+/* BOTÕES */
+
 .tab-btn {
-    background: none; border: 1px solid #222; color: var(--text-dim);
-    padding: 0.7rem 1.5rem; cursor: pointer; border-radius: 4px; transition: 0.3s;
+
+    background: none;
+
+    border: 1px solid #222;
+
+    color: var(--text-dim);
+
+    padding: 0.8rem 1.5rem;
+
+    cursor: pointer;
+
+    border-radius: 6px;
+
+    transition: 0.3s;
+
+    font-size: 0.95rem;
 }
-.tab-btn.active { border-color: var(--neon); color: var(--text); box-shadow: 0 0 10px rgba(138, 43, 226, 0.3); }
 
-.game-content { display: none; animation: fadeIn 0.6s ease; }
-.game-content.active { display: block; }
+.tab-btn:hover {
 
-/* Cards Detalhados */
+    border-color: var(--cyan);
+
+    color: var(--cyan);
+}
+
+.tab-btn.active {
+
+    border-color: var(--neon);
+
+    color: var(--text);
+
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
+}
+
+/* ========================================= */
+/* CONTEÚDO DOS JOGOS */
+/* ========================================= */
+
+.game-content {
+
+    display: none;
+
+    animation: fadeIn 0.6s ease;
+}
+
+.game-content.active {
+
+    display: block;
+}
+
+/* ========================================= */
+/* CARD PRINCIPAL */
+/* ========================================= */
+
 .detail-card {
-    background: var(--card); border: 1px solid #1a1a1a; padding: 2rem; border-radius: 12px;
+
+    background: var(--card);
+
+    border: 1px solid #1a1a1a;
+
+    padding: 2rem;
+
+    border-radius: 14px;
+
+    width: 100%;
 }
-.game-img { width: 100%; border-radius: 8px; margin-bottom: 2rem; border: 1px solid #333; }
 
-.description-box { margin-bottom: 2rem; }
-.description-box h2 { color: var(--neon); margin-bottom: 1rem; font-size: 2rem; }
-.description-box p { color: var(--text-dim); font-size: 1.1rem; margin-bottom: 1.5rem; }
+/* IMAGEM */
 
-/* Requisitos */
-.specs-table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.9rem; }
-.specs-table th, .specs-table td { padding: 12px; border: 1px solid #222; text-align: left; }
-.specs-table th { background: #151515; color: var(--cyan); }
+.game-img {
 
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    width: 100%;
 
-/* Footer Home */
-.footer-home { background: #080808; padding: 4rem 10%; border-top: 1px solid #1a1a1a; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-.footer-home h3 { color: var(--neon); margin-bottom: 1rem; }
+    border-radius: 10px;
+
+    margin-bottom: 2rem;
+
+    border: 1px solid #333;
+
+    object-fit: cover;
+
+    max-height: 550px;
+}
+
+/* ========================================= */
+/* DESCRIÇÃO */
+/* ========================================= */
+
+.description-box {
+
+    margin-bottom: 2rem;
+}
+
+.description-box h2 {
+
+    color: var(--neon);
+
+    margin-bottom: 1rem;
+
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+
+    line-height: 1.2;
+}
+
+.description-box p {
+
+    color: var(--text-dim);
+
+    font-size: 1.05rem;
+
+    margin-bottom: 1.5rem;
+
+    line-height: 1.8;
+}
+
+/* ========================================= */
+/* IFRAME RESPONSIVO */
+/* ========================================= */
+
+.description-box iframe {
+
+    width: 100%;
+
+    aspect-ratio: 16/9;
+
+    border: none;
+
+    border-radius: 10px;
+
+    margin-top: 1rem;
+}
+
+/* ========================================= */
+/* TABELAS */
+/* ========================================= */
+
+.specs-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin-top: 1rem;
+
+    font-size: 0.95rem;
+
+    overflow-x: auto;
+}
+
+.specs-table th,
+.specs-table td {
+
+    padding: 12px;
+
+    border: 1px solid #222;
+
+    text-align: left;
+}
+
+.specs-table th {
+
+    background: #151515;
+
+    color: var(--cyan);
+}
+
+/* ========================================= */
+/* ANIMAÇÃO */
+/* ========================================= */
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(10px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+/* ========================================= */
+/* FOOTER */
+/* ========================================= */
+
+.footer-home {
+
+    background: #080808;
+
+    padding: 4rem 8%;
+
+    border-top: 1px solid #1a1a1a;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 2rem;
+}
+
+.footer-home h3 {
+
+    color: var(--neon);
+
+    margin-bottom: 1rem;
+}
+
+.footer-home p {
+
+    color: var(--text-dim);
+
+    line-height: 1.7;
+}
+
+/* ========================================= */
+/* RESPONSIVIDADE */
+/* ========================================= */
+
+/* TABLETS */
+
+@media (max-width: 900px) {
+
+    header {
+
+        padding: 1rem 5%;
+    }
+
+    .container {
+
+        padding: 8rem 5% 4rem;
+    }
+
+    .footer-home {
+
+        grid-template-columns: 1fr;
+    }
+
+    .description-box p {
+
+        font-size: 1rem;
+    }
+}
+
+/* CELULARES */
+
+@media (max-width: 768px) {
+
+    header {
+
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    nav ul {
+
+        justify-content: center;
+
+        gap: 1rem;
+    }
+
+    .sub-nav {
+
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+    .tab-btn {
+
+        width: 100%;
+
+        max-width: 320px;
+    }
+
+    .detail-card {
+
+        padding: 1.5rem;
+    }
+
+    .game-img {
+
+        max-height: 320px;
+    }
+
+    .specs-table {
+
+        display: block;
+
+        overflow-x: auto;
+
+        white-space: nowrap;
+    }
+}
+
+/* CELULARES PEQUENOS */
+
+@media (max-width: 480px) {
+
+    .logo {
+
+        font-size: 1.1rem;
+    }
+
+    nav a {
+
+        font-size: 0.75rem;
+    }
+
+    .container {
+
+        padding: 9rem 4% 3rem;
+    }
+
+    .detail-card {
+
+        padding: 1rem;
+    }
+
+    .description-box h2 {
+
+        font-size: 1.5rem;
+    }
+
+    .description-box p {
+
+        font-size: 0.95rem;
+
+        line-height: 1.7;
+    }
+
+    .tab-btn {
+
+        padding: 0.75rem 1rem;
+
+        font-size: 0.9rem;
+    }
+
+    .footer-home {
+
+        padding: 3rem 5%;
+    }
+}

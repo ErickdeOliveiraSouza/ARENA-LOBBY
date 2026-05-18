@@ -1,13 +1,79 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notícias | ARENA LOBBY</title>
+
     <link rel="stylesheet" href="style.css">
+
     <style>
+
+        :root {
+            --bg: #0b0f1c;
+            --card: #151c2f;
+            --cyan: #00f5ff;
+            --text: #ffffff;
+            --gray: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        header {
+            width: 100%;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: wrap;
+            gap: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--cyan);
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--cyan);
+        }
+
         .news-container {
-            max-width: 1200px;
-            margin: 0 auto;
+            width: 100%;
+            max-width: 1300px;
+            margin: auto;
             padding: 40px 20px;
         }
 
@@ -18,17 +84,16 @@
         }
 
         .section-header h1 {
-            font-size: 2.5rem;
-            margin: 0;
+            font-size: clamp(2rem, 5vw, 3rem);
             letter-spacing: 2px;
+            margin-bottom: 10px;
         }
 
         .section-header p {
-            color: #888;
-            margin: 5px 0 0;
+            color: var(--gray);
+            line-height: 1.6;
         }
 
-        /* Grid de Notícias Amplas */
         .industry-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -36,35 +101,52 @@
         }
 
         .featured-card {
-            background: linear-gradient(45deg, #111, #1a1a1a);
-            border: 1px solid #333;
-            border-radius: 15px;
+            background: linear-gradient(145deg, #111827, #1f2937);
+            border-radius: 18px;
             overflow: hidden;
             position: relative;
+            border: 1px solid #222;
+            transition: 0.4s;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-5px);
         }
 
         .featured-card img {
             width: 100%;
-            height: 400px;
+            height: 450px;
             object-fit: cover;
-            opacity: 0.7;
+            opacity: 0.75;
             transition: 0.5s;
         }
 
         .featured-card:hover img {
             opacity: 1;
-            transform: scale(1.02);
+            transform: scale(1.03);
         }
 
         .featured-text {
             position: absolute;
             bottom: 0;
-            padding: 30px;
-            background: linear-gradient(transparent, #000);
             width: 100%;
+            padding: 30px;
+            background: linear-gradient(
+                transparent,
+                rgba(0,0,0,0.95)
+            );
         }
 
-        /* Mini Cards */
+        .featured-text h2 {
+            margin: 10px 0;
+            font-size: clamp(1.5rem, 4vw, 2.3rem);
+        }
+
+        .featured-text p {
+            line-height: 1.7;
+            color: #ddd;
+        }
+
         .side-stack {
             display: flex;
             flex-direction: column;
@@ -72,38 +154,147 @@
         }
 
         .mini-card {
-            background: #111;
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 3px solid transparent;
+            background: var(--card);
+            padding: 22px;
+            border-radius: 14px;
+            border-left: 4px solid transparent;
             transition: 0.3s;
+            cursor: pointer;
         }
 
         .mini-card:hover {
             border-left-color: var(--cyan);
-            background: #1a1a1a;
+            background: #1d2740;
+            transform: translateX(5px);
+        }
+
+        .mini-card h3 {
+            margin: 12px 0;
+            font-size: 1.1rem;
+        }
+
+        .mini-card p {
+            line-height: 1.6;
+            color: #ccc;
         }
 
         .tag {
             color: var(--cyan);
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             font-weight: bold;
+            letter-spacing: 1px;
         }
 
-        .mini-card h3 {
-            margin: 10px 0;
-            font-size: 1.1rem;
+        .bottom-news {
+            margin-top: 50px;
+            background: var(--card);
+            padding: 35px;
+            border-radius: 18px;
+            border: 1px solid #222;
         }
 
-        @media (max-width: 900px) {
-            .industry-grid { grid-template-columns: 1fr; }
+        .bottom-news h2 {
+            margin: 15px 0;
+            font-size: clamp(1.5rem, 4vw, 2rem);
         }
+
+        .bottom-news p {
+            color: #ccc;
+            line-height: 1.8;
+            max-width: 900px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            border-top: 1px solid #222;
+            margin-top: 50px;
+        }
+
+        /* RESPONSIVIDADE */
+
+        @media (max-width: 950px) {
+
+            .industry-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-card img {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                justify-content: center;
+            }
+
+            .featured-text {
+                position: relative;
+                background: #111827;
+            }
+
+            .featured-card img {
+                height: 280px;
+            }
+
+            .mini-card {
+                padding: 18px;
+            }
+
+            .bottom-news {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .news-container {
+                padding: 25px 12px;
+            }
+
+            .section-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .featured-card img {
+                height: 220px;
+            }
+
+            .featured-text {
+                padding: 20px;
+            }
+
+            .featured-text p,
+            .mini-card p,
+            .bottom-news p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
     </style>
 </head>
+
 <body>
+
     <header>
+
         <div class="logo">ARENA LOBBY</div>
+
         <nav>
             <ul>
                 <li><a href="index.html">Início</a></li>
@@ -111,57 +302,119 @@
                 <li><a href="noticias.html">Notícias</a></li>
             </ul>
         </nav>
+
     </header>
 
     <main class="news-container">
+
         <div class="section-header">
             <h1>INDÚSTRIA 2026</h1>
-            <p>Tendências, Hardware e o Futuro do Entretenimento Digital</p>
+            <p>
+                Tendências, Hardware e o Futuro do Entretenimento Digital
+            </p>
         </div>
 
         <div class="industry-grid">
-            <!-- Destaque Principal -->
+
+            <!-- NOTÍCIA PRINCIPAL -->
+
             <article class="featured-card">
+
                 <img src="games.png" alt="Inteligência Artificial">
+
                 <div class="featured-text">
+
                     <span class="tag">Inovação</span>
-                    <h2>IA Generativa: A Revolução nos NPCs e Mundos Infinitos</h2>
-                    <p>Como a inteligência artificial está criando diálogos dinâmicos que nunca se repetem e mundos que se moldam às escolhas reais do jogador.</p>
+
+                    <h2>
+                        IA Generativa: A Revolução nos NPCs e Mundos Infinitos
+                    </h2>
+
+                    <p>
+                        Como a inteligência artificial está criando diálogos
+                        dinâmicos que nunca se repetem e mundos que se moldam
+                        às escolhas reais do jogador.
+                    </p>
+
                 </div>
+
             </article>
 
-            <!-- Coluna Lateral -->
+            <!-- COLUNA LATERAL -->
+
             <div class="side-stack">
+
                 <article class="mini-card">
+
                     <span class="tag">Hardware</span>
+
                     <h3>Consoles de Próxima Geração</h3>
-                    <p>Rumores indicam que a nova onda de consoles focará 100% em processamento via nuvem para eliminar downloads.</p>
+
+                    <p>
+                        Rumores indicam que a nova onda de consoles focará
+                        totalmente em processamento via nuvem.
+                    </p>
+
                 </article>
 
                 <article class="mini-card">
+
                     <span class="tag">Mercado</span>
+
                     <h3>Mobile vs PC</h3>
-                    <p>Pela primeira vez, a fidelidade gráfica dos smartphones atinge o nível dos desktops de entrada. O que muda para os desenvolvedores?</p>
+
+                    <p>
+                        Smartphones alcançam qualidade gráfica comparável
+                        aos PCs de entrada.
+                    </p>
+
                 </article>
 
                 <article class="mini-card">
+
                     <span class="tag">E-sports</span>
+
                     <h3>Realidade Virtual Competitiva</h3>
-                    <p>As arenas de VR começam a atrair patrocínios milionários, transformando o "atleta digital" em um atleta físico.</p>
+
+                    <p>
+                        Arenas VR começam a receber investimentos milionários
+                        no cenário competitivo.
+                    </p>
+
                 </article>
+
             </div>
+
         </div>
 
-        <!-- Seção Inferior: Sustentabilidade -->
-        <section style="margin-top: 50px; background: #111; padding: 30px; border-radius: 15px; border: 1px solid #222;">
+        <!-- SEÇÃO INFERIOR -->
+
+        <section class="bottom-news">
+
             <span class="tag">Sustentabilidade</span>
-            <h2 style="margin-top: 10px;">Green Gaming: A Indústria em Busca do Carbono Zero</h2>
-            <p style="color: #ccc; max-width: 800px;">Empresas de hardware estão adotando plásticos reciclados dos oceanos e sistemas de resfriamento que consomem 40% menos energia. O futuro do jogo também é verde.</p>
+
+            <h2>
+                Green Gaming: A Indústria em Busca do Carbono Zero
+            </h2>
+
+            <p>
+                Empresas de hardware estão adotando materiais recicláveis
+                e tecnologias de refrigeração mais eficientes para reduzir
+                o impacto ambiental da indústria gamer.
+            </p>
+
         </section>
+
     </main>
 
-    <footer style="text-align: center; padding: 40px; color: #555;">
-        <p>GameNeon Hub | Conectando você ao futuro dos pixels.</p>
+    <footer>
+
+        <p>
+            ARENA LOBBY | Conectando você ao futuro dos pixels.
+        </p>
+
     </footer>
+
 </body>
+
 </html>

@@ -58,54 +58,103 @@ nav a:hover { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
 /* Footer Home */
 .footer-home { background: #080808; padding: 4rem 10%; border-top: 1px solid #1a1a1a; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 .footer-home h3 { color: var(--neon); margin-bottom: 1rem; }
-/* ========================================= */
-/* RESPONSIVIDADE GLOBAL */
-/* ========================================= */
+/* ============================= */
+/* RESPONSIVIDADE GERAL          */
+/* ============================= */
 
 html, body {
+    width: 100%;
     overflow-x: hidden;
 }
 
-/* Imagens */
-img {
+img, video, iframe {
     max-width: 100%;
     height: auto;
     display: block;
 }
 
-/* Vídeos e iframes */
-iframe,
-video {
-    width: 100%;
-    max-width: 100%;
-    border: none;
+img {
+    object-fit: cover;
 }
 
-/* Containers */
+/* Faz o topo não quebrar */
+header {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-left: clamp(1rem, 4vw, 10%);
+    padding-right: clamp(1rem, 4vw, 10%);
+}
+
+/* Deixa os blocos centrais sempre dentro da tela */
 .container,
 .news-container,
 .newspaper-container {
-    width: 100%;
-    max-width: 1200px;
+    width: min(1200px, calc(100% - 2rem));
+    margin-inline: auto;
+    padding-left: clamp(1rem, 3vw, 2rem);
+    padding-right: clamp(1rem, 3vw, 2rem);
+    box-sizing: border-box;
 }
 
-/* ========================================= */
-/* TABLETS */
-/* ========================================= */
+/* Textos mais flexíveis */
+h1, h2, h3, p {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
 
+/* Navegação */
+nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Botões */
+.sub-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tab-btn {
+    max-width: 100%;
+    white-space: normal;
+}
+
+/* Vídeos responsivos */
+iframe {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    border: 0;
+}
+
+/* Tabelas não estouram no celular */
+.specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Grid se adapta melhor */
+.industry-grid,
+.newspaper-grid,
+.footer-home {
+    gap: clamp(1rem, 3vw, 2rem);
+}
+
+/* Imagens principais com boa adaptação */
+.game-img,
+.featured-card img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+/* ============================= */
+/* TABLETS                      */
+/* ============================= */
 @media (max-width: 900px) {
-
-    header {
-        padding: 1rem 5%;
-    }
-
-    .container,
-    .news-container,
-    .newspaper-container {
-        padding-left: 5%;
-        padding-right: 5%;
-    }
-
     .industry-grid,
     .newspaper-grid,
     .footer-home {
@@ -119,105 +168,81 @@ video {
     .sidebar-articles {
         border-left: none !important;
         padding-left: 0 !important;
-        margin-top: 30px;
     }
 
     .featured-card img {
-        height: auto !important;
+        height: auto;
     }
 }
 
-/* ========================================= */
-/* CELULARES */
-/* ========================================= */
-
+/* ============================= */
+/* CELULARES                    */
+/* ============================= */
 @media (max-width: 768px) {
-
     header {
         flex-direction: column;
-        gap: 15px;
+        align-items: center;
         text-align: center;
     }
 
     nav ul {
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 1rem;
+        gap: 0.8rem;
+    }
+
+    .container,
+    .news-container,
+    .newspaper-container {
+        width: calc(100% - 1rem);
     }
 
     .sub-nav {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
     }
 
     .tab-btn {
         width: 100%;
-        max-width: 320px;
     }
 
     .detail-card,
     .featured-text,
     .newspaper-container {
-        padding: 20px !important;
-    }
-
-    .description-box h2,
-    .main-article h2 {
-        font-size: clamp(1.6rem, 5vw, 2.5rem);
-    }
-
-    .description-box p,
-    .article-columns,
-    .featured-text p {
-        font-size: 1rem;
-        line-height: 1.7;
-    }
-
-    .specs-table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
+        padding: 1.25rem !important;
     }
 
     .newspaper-meta {
         flex-direction: column;
         text-align: center;
-        gap: 10px;
+        gap: 0.5rem;
     }
 }
 
-/* ========================================= */
-/* CELULARES PEQUENOS */
-/* ========================================= */
-
+/* ============================= */
+/* TELAS PEQUENAS               */
+/* ============================= */
 @media (max-width: 480px) {
-
     .logo {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        letter-spacing: 1px;
     }
 
     nav a {
         font-size: 0.75rem;
     }
 
-    .container,
-    .news-container,
-    .newspaper-container {
-        padding-left: 4%;
-        padding-right: 4%;
+    .description-box h2,
+    .main-article h2,
+    .section-header h1,
+    .newspaper-title {
+        font-size: clamp(1.6rem, 7vw, 2.5rem);
     }
 
-    .newspaper-title,
-    .section-header h1 {
-        font-size: clamp(2rem, 7vw, 3rem);
-    }
-
-    .game-img,
-    .featured-card img {
-        border-radius: 8px;
-    }
-
-    .footer-home {
-        padding: 3rem 5%;
+    .description-box p,
+    .article-columns,
+    .featured-text p,
+    .mini-card p,
+    .bottom-news p {
+        font-size: 0.95rem;
+        line-height: 1.65;
     }
 }

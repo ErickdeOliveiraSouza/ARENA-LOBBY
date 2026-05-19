@@ -58,3 +58,166 @@ nav a:hover { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
 /* Footer Home */
 .footer-home { background: #080808; padding: 4rem 10%; border-top: 1px solid #1a1a1a; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 .footer-home h3 { color: var(--neon); margin-bottom: 1rem; }
+/* ========================================= */
+/* RESPONSIVIDADE GLOBAL */
+/* ========================================= */
+
+html, body {
+    overflow-x: hidden;
+}
+
+/* Imagens */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Vídeos e iframes */
+iframe,
+video {
+    width: 100%;
+    max-width: 100%;
+    border: none;
+}
+
+/* Containers */
+.container,
+.news-container,
+.newspaper-container {
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* ========================================= */
+/* TABLETS */
+/* ========================================= */
+
+@media (max-width: 900px) {
+
+    header {
+        padding: 1rem 5%;
+    }
+
+    .container,
+    .news-container,
+    .newspaper-container {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .industry-grid,
+    .newspaper-grid,
+    .footer-home {
+        grid-template-columns: 1fr !important;
+    }
+
+    .article-columns {
+        column-count: 1 !important;
+    }
+
+    .sidebar-articles {
+        border-left: none !important;
+        padding-left: 0 !important;
+        margin-top: 30px;
+    }
+
+    .featured-card img {
+        height: auto !important;
+    }
+}
+
+/* ========================================= */
+/* CELULARES */
+/* ========================================= */
+
+@media (max-width: 768px) {
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .sub-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tab-btn {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .detail-card,
+    .featured-text,
+    .newspaper-container {
+        padding: 20px !important;
+    }
+
+    .description-box h2,
+    .main-article h2 {
+        font-size: clamp(1.6rem, 5vw, 2.5rem);
+    }
+
+    .description-box p,
+    .article-columns,
+    .featured-text p {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .specs-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .newspaper-meta {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+}
+
+/* ========================================= */
+/* CELULARES PEQUENOS */
+/* ========================================= */
+
+@media (max-width: 480px) {
+
+    .logo {
+        font-size: 1.1rem;
+    }
+
+    nav a {
+        font-size: 0.75rem;
+    }
+
+    .container,
+    .news-container,
+    .newspaper-container {
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+
+    .newspaper-title,
+    .section-header h1 {
+        font-size: clamp(2rem, 7vw, 3rem);
+    }
+
+    .game-img,
+    .featured-card img {
+        border-radius: 8px;
+    }
+
+    .footer-home {
+        padding: 3rem 5%;
+    }
+}
